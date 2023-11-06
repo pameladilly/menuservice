@@ -13,7 +13,7 @@ phases:
       - ./mvnw package
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t menuservice .
+      - docker build -f src/main/docker/Dockerfile.jvm -t menuservice .
       - docker tag menuservice:latest 975507422002.dkr.ecr.us-east-2.amazonaws.com/menuservice:latest
   post_build:
     commands:
