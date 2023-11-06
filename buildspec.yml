@@ -10,7 +10,7 @@ phases:
   build:
     commands:
       - echo mvn
-      - ./mvnw package
+      - mvn package
       - echo Build started on `date`
       - echo Building the Docker image...
       - docker build -f src/main/docker/Dockerfile.jvm -t menuservice .
