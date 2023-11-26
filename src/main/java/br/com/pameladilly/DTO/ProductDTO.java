@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class ProductDTO {
 
+    private Long id;
     private String name;
     private String href;
     private Integer position;
@@ -16,7 +17,8 @@ public class ProductDTO {
     @Override
     public String toString() {
         return "ProductDTO{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", href='" + href + '\'' +
                 ", position=" + position +
                 '}';
