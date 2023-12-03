@@ -21,8 +21,8 @@ public class MenuController {
     @GET
     @Path("/menu/{idMenu}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getMenu(@PathParam("idMenu") String idMenu){
-        return Response.ok(service.getMenu(idMenu)).build();
+    public Response getMenu(@PathParam("idMenu") String idMenu , @QueryParam("idPessoa") String idPessoa){
+        return Response.ok(service.getMenu(idMenu, idPessoa)).build();
     }
 
     @POST

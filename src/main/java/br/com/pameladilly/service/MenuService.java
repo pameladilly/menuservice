@@ -29,6 +29,9 @@ public class MenuService {
     @RestClient
     IMenu service;
 
+    @Inject
+    PreferencesService preferencesService;
+
     @ConfigProperty( name = "redis.expires")
     Long REDIS_EXPIRES;
 
@@ -56,7 +59,7 @@ public class MenuService {
 
     }
 
-    public MenuDTOResponse getMenu(String idMenu){
+    public MenuDTOResponse getMenu(String idMenu, String idPessoa){
         MenuDTOResponse menu = null;
         menu = get(idMenu);
 
@@ -64,11 +67,18 @@ public class MenuService {
             log.log( Logger.Level.INFO, "Buscando menu em cache: idMenu=" + idMenu);
             return menu;
         }else{
-            log.log( Logger.Level.INFO, "CACHE EXPIRADO!");
+            log.log( Logger.Level.INFO, "CACHE INEXISTENTE ou EXPIRADO!");
             log.log( Logger.Level.INFO, "Buscando menu em menuservicebackoffice:getMenu=" + idMenu);
             menu = service.getMenu(idMenu);
             set(idMenu, menu );
         }
-            return menu ;
+
+        if(idPessoa != null)
+            return  preferencesService.mergePreferences(Long.parseLong(idPessoa), menu);
+        else
+            return menu;
+
     }
+
+
 }

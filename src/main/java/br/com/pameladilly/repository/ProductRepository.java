@@ -5,4 +5,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class ProductRepository implements PanacheRepository<ProductRepository> {
+
+    public void deleteByIdPreferences(Long id){
+        delete("preferences_id", id);
+    }
 }

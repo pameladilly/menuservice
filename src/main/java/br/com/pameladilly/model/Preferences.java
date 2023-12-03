@@ -21,7 +21,7 @@ public class Preferences extends PanacheEntity {
 
     private Long idMenu;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "preferences_id")
     private List<Product> products = new ArrayList<>();
 
