@@ -63,7 +63,7 @@ public class PreferencesService {
             newMenu.setProducts(new ArrayList<>());
 
             menuDTOResponse.getProducts().forEach( p -> {
-                if (preferences.get().getProducts().stream().anyMatch( pref -> pref.getIdProduct() == p.getId()  )){
+                if (preferences.get().getProducts().stream().anyMatch( pref -> pref.getIdProduct().equals(p.getId()) )){
                     newMenu.getProducts().add(p);
 
                 }
