@@ -2,6 +2,7 @@ package br.com.pameladilly.service;
 
 import br.com.pameladilly.DTO.MenuDTOResponse;
 import br.com.pameladilly.DTO.PreferencesDTO;
+import br.com.pameladilly.DTO.ProductDTO;
 import br.com.pameladilly.model.Preferences;
 import br.com.pameladilly.model.Product;
 import br.com.pameladilly.repository.PreferencesRepository;
@@ -60,14 +61,16 @@ public class PreferencesService {
 
 
             MenuDTOResponse newMenu = MenuDTOResponse.builder().build();
-            newMenu.setProducts(new ArrayList<>());
+            newMenu.setProducts(menuDTOResponse.getProducts());
+            newMenu.setPreferences(new ArrayList<>());
 
-            menuDTOResponse.getProducts().forEach( p -> {
-                if (preferences.get().getProducts().stream().anyMatch( pref -> pref.getIdProduct().equals(p.getId()) )){
-                    newMenu.getProducts().add(p);
+            preferences.get().getProducts().forEach( product ->
 
-                }
-            });
+                    newMenu.getPreferences().add(
+                            ProductDTO.builder().id(product.getIdProduct()).position(product.getPosition()).build())
+
+
+            );
 
             newMenu.setName(menuDTOResponse.getName());
             return newMenu;

@@ -1,5 +1,6 @@
 package br.com.pameladilly.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 @Getter
@@ -10,8 +11,13 @@ import lombok.*;
 public class ProductDTO {
 
     private Long id;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String name;
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String href;
+
     private Integer position;
 
     @Override

@@ -1,5 +1,7 @@
 package br.com.pameladilly.DTO;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -10,7 +12,13 @@ import java.util.List;
 @Builder
 public class MenuDTOResponse {
     private String name;
+
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+    private List<ProductDTO> preferences;
+
     private List<ProductDTO> products;
+
+
 
 
     @Override
